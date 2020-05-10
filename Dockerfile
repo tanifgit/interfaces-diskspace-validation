@@ -22,9 +22,9 @@ SHELL ["/irissession.sh"]
 # zpm "install webterminal" 
 RUN \
   do $SYSTEM.OBJ.Load("Installer.cls", "ck") \
-  set ^UnitTestRoot = "/opt/irisapp/unittests" \
   set sc = ##class(App.Installer).setup() \
-  zn "IRISAPP" 
+  zn "IRISAPP" \
+  set ^UnitTestRoot = "/opt/irisapp/unittests" 
   
 
 # bringing the standard shell back

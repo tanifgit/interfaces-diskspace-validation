@@ -21,9 +21,9 @@ Method OnAfterProductionStart() As %Status
 	set file = ##class(%Stream.FileCharacter).%New()
 	set filename = ..#InDir_"/RecordMap_Delimited_Input.txt"
 	
-	set file.filename = filename
+	set file.Filename = filename
 
-	do file.CopyFrom(xdata)
+	do file.CopyFrom(xdata.Data)
 
 	set status = file.%Save()
 
@@ -40,13 +40,14 @@ Method OnAfterProductionStart() As %Status
 /// So if a non fatal error occurs, you may invoke ..LogErrors(status,"OnBeforeProductionStart()") and return $$$OK.
 Method OnBeforeProductionStart() As %Status
 {
-	Set returnCode = ""
-	Set created = ##class(%File).CreateDirectory(..#InDir,.returnCode)
-	
-	If 'created {
-		Quit ..Error("Error creating directory "_..#InDir_" return code: "_returnCode)
-	}
-	
+	if '##class(%File).DirectoryExists(..#InDir) {
+		Set returnCode = ""
+		Set created = ##class(%File).CreateDirectory(..#InDir,.returnCode)
+		
+		If 'created {
+			Quit ..Error("Error creating directory "_..#InDir_" return code: "_returnCode)
+		}
+	}	
 	Set status = ..ChangeSetting(..#PRODUCTION,"FromSystemA","FilePath",..#InDir,1)
 	
 	Quit status
