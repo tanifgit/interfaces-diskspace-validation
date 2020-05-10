@@ -9,6 +9,8 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 
 USER irisowner
 
+RUN mkdir unittests
+RUN mkdir unittests/tests
 COPY  Installer.cls .
 COPY  src src
 COPY irissession.sh /
@@ -20,6 +22,7 @@ SHELL ["/irissession.sh"]
 # zpm "install webterminal" 
 RUN \
   do $SYSTEM.OBJ.Load("Installer.cls", "ck") \
+  set ^UnitTestRoot = "/opt/irisapp/unittests" \
   set sc = ##class(App.Installer).setup() \
   zn "IRISAPP" 
   
