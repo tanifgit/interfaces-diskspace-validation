@@ -117,8 +117,21 @@ zpm: IRISAPP> install interfaces-diskspace-validation
 
 ## How to Test it
 
-See sample above
+See sample above,
+also see ClassDoc of Main class, Specifically see this example -
 
+```
+IRISAPP>Do ##class(InterfaceDiskSpace.Main).RunFullFlow("P" /* Clean Option - Purge*/,"" /* Mask not Kill */, "E" /* Prompt before clean level - Each */, "" /* User clean class */, "" /* User clean method */, 1 /* Stop Production */, 1 /* Clean Production */, 1 /* Verbose */,  "InterfaceDiskSpace.Test.ProdUnitTest" /* User test class */, "Run" /* User test method */, 0 /* Start Production */)
+```
+
+If using the Docker Container created by the Dockerfile in this pacakge the UnitTest folder and global should be set up, if running else where and you want to use the methof above, you'd need to set these two up (UnitTest folder and sub-folder and global pointing to it), for example:
+```
+IRISAPP>set ^UnitTestRoot="C:\UnitTests"
+```
+Or:
+```
+IRISAPP>set ^UnitTestRoot="/opt/irisapp/unittests"
+```
 
 ## How to start coding
 This repository is ready to code in VSCode with ObjectScript plugin.
