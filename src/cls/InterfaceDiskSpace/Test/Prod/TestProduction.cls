@@ -1,0 +1,26 @@
+/// A test production for testing the InterfaceDiskSpaceframework. See <class>InterfaceDiskSpace.Main</class> for details 
+/// <br>It includes simply a Business Service and Router. The BS accepts files and sends the RecordMap-generated messages to the Router
+/// <br>The BS expects a path to exist at C:\Temp\EnsInterfaceDiskSpace\In. The UnitTest class (<class>InterfaceDiskSpace.Test.ProdUnitTest</class>) will attempt to create it when running. <i>[If the server is a non-Windows environment this will need to be changed.]</i>
+/// <br>It uses the \dev\ensemble\RecordMap\RecordMap_Delimited_Input2.txt sample file as input
+Class InterfaceDiskSpace.Test.Prod.TestProduction Extends Ens.Production
+{
+
+XData ProductionDefinition
+{
+<Production Name="InterfaceDiskSpace.Test.Prod.TestProduction" LogGeneralTraceEvents="false">
+  <Description></Description>
+  <ActorPoolSize>2</ActorPoolSize>
+  <Item Name="FromSystemA" Category="" ClassName="EnsLib.RecordMap.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="RecordMap">InterfaceDiskSpace.Test.RM.Record</Setting>
+    <Setting Target="Adapter" Name="FilePath">C:\Temp\EnsInterfaceDiskSpace\In</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">Record Router</Setting>
+    <Setting Target="Adapter" Name="FileSpec">RecordMap_Delimited*</Setting>
+  </Item>
+  <Item Name="Record Router" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="Validation"></Setting>
+    <Setting Target="Host" Name="BusinessRuleName">InterfaceDiskSpace.Test.Prod.RecordRouterRoutingRule</Setting>
+  </Item>
+</Production>
+}
+
+}

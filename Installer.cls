@@ -13,18 +13,18 @@ XData setup
     <Configuration>
       <Database Name="${Namespace}" Dir="/opt/${app}/data" Create="yes" Resource="%DB_${Namespace}"/>
 
-      <Import File="${SourceDir}" Flags="ck" Recurse="1"/>
-    </Configuration>
-    <CSPApplication Url="/csp/${app}" 
-      Directory="${cspdir}${app}" 
-      ServeFiles="1"
-      Recurse="1" 
-      Grant="%DB_${Namespace},%SQL"
-      AuthenticationMethods="32"
-       
-    />
+         </Configuration>
+    
     </Namespace>
   
+  <Namespace Name="${Namespace}" Code="${Namespace}" Data="${Namespace}" Create="no" Ensemble="1">
+
+    <Configuration>
+     
+      <Import File="${SourceDir}" Flags="ck" Recurse="1"/>
+    </Configuration>
+    
+    </Namespace>
 
 </Manifest>
 }
