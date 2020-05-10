@@ -21,7 +21,6 @@ SHELL ["/irissession.sh"]
 RUN \
   do $SYSTEM.OBJ.Load("Installer.cls", "ck") \
   set sc = ##class(App.Installer).setup() \
-  Do $system.OBJ.Load("/tmp/deps/zpm.xml", "ck") \
   zn "IRISAPP" 
   
 
