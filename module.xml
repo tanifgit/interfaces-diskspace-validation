@@ -3,7 +3,8 @@
   <Document name="interfaces-diskspace-validation.ZPM">
     <Module>
       <Name>interfaces-diskspace-validation</Name>
-      <Version>1.0.2</Version>
+      <Version>1.0.3</Version>
+      <Description>A tool for estimating interfaces disk space and purge validation</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="InterfaceDiskSpace.PKG"/>
